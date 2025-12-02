@@ -1,0 +1,2148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Balora Bombay – Versova | Matcha & Pastel Café</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  
+  <style>
+    :root {
+      --blue: #bcd8ff;
+      --blue-light: #e8f1ff;
+      --blue-dark: #8eb8f0;
+      --beige: #f5ebe0;
+      --beige-dark: #e6d5c3;
+      --matcha: #9acf8a;
+      --matcha-dark: #7ab869;
+      --matcha-light: #c8e6bf;
+      --cream: #fffdf8;
+      --text: #2d3436;
+      --text-light: #636e72;
+      --gold: #d4a574;
+      --gold-light: #e8c9a8;
+      --white: #ffffff;
+      --shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.08);
+      --shadow-lg: 0 35px 60px -15px rgba(0, 0, 0, 0.12);
+      --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-slow: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Jost', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      line-height: 1.2;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Preloader */
+    .preloader {
+      position: fixed;
+      inset: 0;
+      background: var(--cream);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+    }
+
+    .preloader.hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .preloader-inner {
+      text-align: center;
+    }
+
+    .preloader-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.5rem;
+      font-weight: 600;
+      color: var(--matcha-dark);
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+
+    .preloader-bar {
+      width: 120px;
+      height: 3px;
+      background: var(--beige);
+      margin: 20px auto 0;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .preloader-bar::after {
+      content: '';
+      display: block;
+      width: 40%;
+      height: 100%;
+      background: var(--matcha);
+      animation: loading 1s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    @keyframes loading {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(350%); }
+    }
+
+    /* Header */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 20px 0;
+      transition: var(--transition);
+    }
+
+    header.scrolled {
+      background: rgba(255, 253, 248, 0.95);
+      backdrop-filter: blur(20px);
+      padding: 15px 0;
+      box-shadow: 0 2px 30px rgba(0, 0, 0, 0.06);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-icon {
+      width: 45px;
+      height: 45px;
+      background: linear-gradient(135deg, var(--matcha), var(--blue));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 700;
+      font-size: 1.4rem;
+      color: var(--white);
+      box-shadow: 0 4px 15px rgba(154, 207, 138, 0.4);
+    }
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .logo-text span:first-child {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1;
+    }
+
+    .logo-text span:last-child {
+      font-size: 0.75rem;
+      color: var(--text-light);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+    }
+
+    .nav-links a {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--text);
+      position: relative;
+      padding: 5px 0;
+      transition: var(--transition);
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--matcha);
+      transition: var(--transition);
+    }
+
+    .nav-links a:hover {
+      color: var(--matcha-dark);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-btn {
+      padding: 12px 28px;
+      background: var(--matcha);
+      color: var(--white);
+      font-weight: 600;
+      font-size: 0.9rem;
+      border-radius: 50px;
+      transition: var(--transition);
+      box-shadow: 0 4px 15px rgba(154, 207, 138, 0.3);
+    }
+
+    .nav-btn:hover {
+      background: var(--matcha-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(154, 207, 138, 0.4);
+    }
+
+    .nav-btn::after {
+      display: none;
+    }
+
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 6px;
+      cursor: pointer;
+      padding: 10px;
+    }
+
+    .menu-toggle span {
+      width: 25px;
+      height: 2px;
+      background: var(--text);
+      transition: var(--transition);
+    }
+
+    /* Hero Slider */
+    .hero {
+      min-height: 100vh;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-slider {
+      position: relative;
+      height: 100vh;
+    }
+
+    .hero-slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 1s ease, visibility 1s ease;
+    }
+
+    .hero-slide.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .hero-slide-bg {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      transform: scale(1.1);
+      transition: transform 8s ease;
+    }
+
+    .hero-slide.active .hero-slide-bg {
+      transform: scale(1);
+    }
+
+    .hero-slide::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255, 253, 248, 0.92), rgba(245, 235, 224, 0.85));
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      padding-top: 80px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .hero-text {
+      max-width: 560px;
+    }
+
+    .hero-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 20px;
+      background: rgba(154, 207, 138, 0.15);
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--matcha-dark);
+      margin-bottom: 25px;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeUp 0.8s ease forwards;
+      animation-delay: 0.3s;
+    }
+
+    .hero-label-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--matcha);
+      border-radius: 50%;
+      animation: blink 2s ease infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    .hero-title {
+      font-size: clamp(3rem, 5vw, 4.5rem);
+      color: var(--text);
+      margin-bottom: 25px;
+      opacity: 0;
+      transform: translateY(40px);
+      animation: fadeUp 0.8s ease forwards;
+      animation-delay: 0.5s;
+    }
+
+    .hero-title span {
+      display: block;
+      background: linear-gradient(135deg, var(--matcha-dark), var(--blue-dark));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-desc {
+      font-size: 1.1rem;
+      color: var(--text-light);
+      margin-bottom: 35px;
+      opacity: 0;
+      transform: translateY(40px);
+      animation: fadeUp 0.8s ease forwards;
+      animation-delay: 0.7s;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      opacity: 0;
+      transform: translateY(40px);
+      animation: fadeUp 0.8s ease forwards;
+      animation-delay: 0.9s;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 32px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      border-radius: 50px;
+      transition: var(--transition);
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--matcha);
+      color: var(--white);
+      box-shadow: 0 4px 20px rgba(154, 207, 138, 0.35);
+    }
+
+    .btn-primary:hover {
+      background: var(--matcha-dark);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(154, 207, 138, 0.45);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--text);
+      border: 2px solid var(--beige-dark);
+    }
+
+    .btn-secondary:hover {
+      background: var(--beige);
+      border-color: var(--beige);
+      transform: translateY(-3px);
+    }
+
+    .hero-image {
+      position: relative;
+      opacity: 0;
+      transform: translateX(50px);
+      animation: fadeLeft 1s ease forwards;
+      animation-delay: 0.6s;
+    }
+
+    .hero-image-main {
+      border-radius: 30px;
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+    }
+
+    .hero-image-main img {
+      width: 100%;
+      height: 500px;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+
+    .hero-image-main:hover img {
+      transform: scale(1.05);
+    }
+
+    .hero-float-card {
+      position: absolute;
+      background: var(--white);
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: var(--shadow);
+      animation: float 4s ease-in-out infinite;
+    }
+
+    .hero-float-card.card-1 {
+      top: 30px;
+      right: -30px;
+      animation-delay: 0s;
+    }
+
+    .hero-float-card.card-2 {
+      bottom: 40px;
+      left: -40px;
+      animation-delay: 2s;
+    }
+
+    .float-card-icon {
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, var(--matcha-light), var(--matcha));
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+    }
+
+    .float-card-text {
+      font-size: 0.85rem;
+      color: var(--text-light);
+    }
+
+    .float-card-text strong {
+      display: block;
+      font-size: 1rem;
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeLeft {
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .hero-slider-nav {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 12px;
+      z-index: 10;
+    }
+
+    .slider-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--beige-dark);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .slider-dot.active {
+      background: var(--matcha);
+      transform: scale(1.3);
+    }
+
+    /* Section Styles */
+    section {
+      padding: 100px 0;
+      position: relative;
+    }
+
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--matcha-dark);
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      margin-bottom: 15px;
+    }
+
+    .section-label::before,
+    .section-label::after {
+      content: '';
+      width: 30px;
+      height: 1px;
+      background: var(--matcha);
+    }
+
+    .section-title {
+      font-size: clamp(2.2rem, 4vw, 3.2rem);
+      color: var(--text);
+      margin-bottom: 20px;
+    }
+
+    .section-desc {
+      font-size: 1.05rem;
+      color: var(--text-light);
+      max-width: 600px;
+    }
+
+    /* Reveal Animations */
+    .reveal {
+      opacity: 0;
+      transform: translateY(60px);
+      transition: var(--transition-slow);
+    }
+
+    .reveal.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-left {
+      opacity: 0;
+      transform: translateX(-60px);
+      transition: var(--transition-slow);
+    }
+
+    .reveal-left.revealed {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .reveal-right {
+      opacity: 0;
+      transform: translateX(60px);
+      transition: var(--transition-slow);
+    }
+
+    .reveal-right.revealed {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    /* About Section */
+    .about {
+      background: linear-gradient(180deg, var(--cream) 0%, var(--beige) 100%);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .about-images {
+      position: relative;
+    }
+
+    .about-img-main {
+      border-radius: 30px;
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .about-img-main img {
+      width: 100%;
+      height: 450px;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+
+    .about-img-main:hover img {
+      transform: scale(1.05);
+    }
+
+    .about-img-float {
+      position: absolute;
+      bottom: -40px;
+      right: -40px;
+      width: 200px;
+      height: 200px;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      border: 5px solid var(--white);
+    }
+
+    .about-img-float img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .about-experience {
+      position: absolute;
+      top: 30px;
+      left: -30px;
+      background: var(--matcha);
+      color: var(--white);
+      padding: 25px;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(154, 207, 138, 0.4);
+    }
+
+    .about-experience-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .about-experience-text {
+      font-size: 0.85rem;
+      opacity: 0.9;
+    }
+
+    .about-content {
+      padding-left: 20px;
+    }
+
+    .about-text {
+      font-size: 1.05rem;
+      color: var(--text-light);
+      margin-bottom: 30px;
+      line-height: 1.8;
+    }
+
+    .about-features {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-bottom: 35px;
+    }
+
+    .about-feature {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .about-feature-icon {
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, var(--blue-light), var(--blue));
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      flex-shrink: 0;
+    }
+
+    .about-feature-text {
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    /* Special Section */
+    .special {
+      background: var(--cream);
+      overflow: hidden;
+    }
+
+    .special-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .special-image {
+      position: relative;
+    }
+
+    .special-img-wrapper {
+      position: relative;
+      border-radius: 30px;
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .special-img-wrapper::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(45deg, rgba(154, 207, 138, 0.2), transparent);
+      z-index: 1;
+      opacity: 0;
+      transition: var(--transition);
+    }
+
+    .special-img-wrapper:hover::before {
+      opacity: 1;
+    }
+
+    .special-img-wrapper img {
+      width: 100%;
+      height: 500px;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+
+    .special-img-wrapper:hover img {
+      transform: scale(1.05);
+    }
+
+    .special-badge {
+      position: absolute;
+      top: 30px;
+      right: 30px;
+      background: var(--gold);
+      color: var(--white);
+      padding: 15px 25px;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      z-index: 2;
+      box-shadow: 0 5px 20px rgba(212, 165, 116, 0.4);
+    }
+
+    .special-content .section-title {
+      margin-bottom: 25px;
+    }
+
+    .special-text {
+      font-size: 1.05rem;
+      color: var(--text-light);
+      margin-bottom: 30px;
+      line-height: 1.8;
+    }
+
+    .special-price {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      margin-bottom: 30px;
+    }
+
+    .special-price-amount {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--matcha-dark);
+    }
+
+    .special-price-text {
+      font-size: 0.95rem;
+      color: var(--text-light);
+    }
+
+    .testimonial-card {
+      background: var(--white);
+      border-radius: 25px;
+      padding: 30px;
+      box-shadow: var(--shadow);
+      position: relative;
+      margin-top: 30px;
+    }
+
+    .testimonial-card::before {
+      content: '"';
+      position: absolute;
+      top: 20px;
+      left: 25px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 5rem;
+      color: var(--matcha-light);
+      line-height: 1;
+    }
+
+    .testimonial-text {
+      font-style: italic;
+      color: var(--text-light);
+      margin-bottom: 20px;
+      padding-left: 40px;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      padding-left: 40px;
+    }
+
+    .testimonial-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .testimonial-name {
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .testimonial-role {
+      font-size: 0.85rem;
+      color: var(--text-light);
+    }
+
+    /* Strengths Section */
+    .strengths {
+      background: linear-gradient(180deg, var(--beige) 0%, var(--cream) 100%);
+    }
+
+    .strengths-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .strengths-header .section-desc {
+      margin: 0 auto;
+    }
+
+    .strengths-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 30px;
+    }
+
+    .strength-card {
+      background: var(--white);
+      border-radius: 25px;
+      padding: 40px 30px;
+      text-align: center;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .strength-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--matcha), var(--blue));
+      transform: scaleX(0);
+      transition: var(--transition);
+    }
+
+    .strength-card:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .strength-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .strength-icon {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 25px;
+      background: linear-gradient(135deg, var(--matcha-light), var(--matcha));
+      border-radius: 25px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      transition: var(--transition);
+    }
+
+    .strength-card:hover .strength-icon {
+      transform: rotateY(180deg);
+    }
+
+    .strength-title {
+      font-size: 1.3rem;
+      margin-bottom: 15px;
+      color: var(--text);
+    }
+
+    .strength-text {
+      font-size: 0.95rem;
+      color: var(--text-light);
+      line-height: 1.7;
+    }
+
+    /* Menu Preview */
+    .menu-preview {
+      background: var(--cream);
+      position: relative;
+    }
+
+    .menu-preview::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 50%;
+      background: var(--beige);
+    }
+
+    .menu-preview .container {
+      position: relative;
+      z-index: 1;
+    }
+
+    .menu-header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .menu-header .section-desc {
+      margin: 0 auto;
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+    }
+
+    .menu-card {
+      background: var(--white);
+      border-radius: 25px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+
+    .menu-card:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .menu-card-image {
+      position: relative;
+      overflow: hidden;
+      height: 220px;
+    }
+
+    .menu-card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+
+    .menu-card:hover .menu-card-image img {
+      transform: scale(1.1);
+    }
+
+    .menu-card-tag {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      background: var(--matcha);
+      color: var(--white);
+      padding: 6px 15px;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .menu-card-content {
+      padding: 25px;
+    }
+
+    .menu-card-title {
+      font-size: 1.4rem;
+      margin-bottom: 10px;
+      color: var(--text);
+    }
+
+    .menu-card-desc {
+      font-size: 0.9rem;
+      color: var(--text-light);
+      margin-bottom: 20px;
+    }
+
+    .menu-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .menu-card-price {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--matcha-dark);
+    }
+
+    .menu-card-btn {
+      width: 45px;
+      height: 45px;
+      background: var(--beige);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      transition: var(--transition);
+      cursor: pointer;
+    }
+
+    .menu-card-btn:hover {
+      background: var(--matcha);
+      color: var(--white);
+    }
+
+    /* Events Section */
+    .events {
+      background: linear-gradient(180deg, var(--cream) 0%, var(--blue-light) 100%);
+    }
+
+    .events-header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .events-header .section-desc {
+      margin: 0 auto;
+    }
+
+    .events-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+    }
+
+    .event-card {
+      background: var(--white);
+      border-radius: 25px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+
+    .event-card:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .event-card-image {
+      position: relative;
+      overflow: hidden;
+      height: 200px;
+    }
+
+    .event-card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+
+    .event-card:hover .event-card-image img {
+      transform: scale(1.1);
+    }
+
+    .event-card-date {
+      position: absolute;
+      bottom: 15px;
+      left: 15px;
+      background: var(--white);
+      padding: 10px 15px;
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .event-card-date-day {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--matcha-dark);
+      line-height: 1;
+    }
+
+    .event-card-date-month {
+      font-size: 0.75rem;
+      color: var(--text-light);
+      text-transform: uppercase;
+    }
+
+    .event-card-content {
+      padding: 25px;
+    }
+
+    .event-card-tag {
+      display: inline-block;
+      background: var(--matcha-light);
+      color: var(--matcha-dark);
+      padding: 5px 12px;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .event-card-title {
+      font-size: 1.3rem;
+      margin-bottom: 10px;
+      color: var(--text);
+      transition: var(--transition);
+    }
+
+    .event-card:hover .event-card-title {
+      color: var(--matcha-dark);
+    }
+
+    .event-card-text {
+      font-size: 0.9rem;
+      color: var(--text-light);
+    }
+
+    /* Contact Section */
+    .contact {
+      background: var(--text);
+      color: var(--white);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(154, 207, 138, 0.1), transparent);
+      border-radius: 50%;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+      position: relative;
+      z-index: 1;
+    }
+
+    .contact-content .section-label {
+      color: var(--matcha);
+    }
+
+    .contact-content .section-label::before,
+    .contact-content .section-label::after {
+      background: var(--matcha);
+    }
+
+    .contact-content .section-title {
+      color: var(--white);
+    }
+
+    .contact-text {
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: 40px;
+    }
+
+    .contact-info-item {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+
+    .contact-info-icon {
+      width: 60px;
+      height: 60px;
+      background: rgba(154, 207, 138, 0.15);
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+
+    .contact-info-label {
+      font-size: 0.9rem;
+      color: var(--matcha);
+      margin-bottom: 5px;
+    }
+
+    .contact-info-text {
+      font-size: 1.1rem;
+      color: var(--white);
+      font-weight: 500;
+    }
+
+    .contact-hours {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 25px;
+      padding: 35px;
+      backdrop-filter: blur(10px);
+    }
+
+    .contact-hours-title {
+      font-size: 1.5rem;
+      margin-bottom: 25px;
+      color: var(--white);
+    }
+
+    .contact-hours-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 15px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .contact-hours-item:last-child {
+      border-bottom: none;
+    }
+
+    .contact-hours-day {
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .contact-hours-time {
+      color: var(--matcha);
+      font-weight: 600;
+    }
+
+    .contact-socials {
+      display: flex;
+      gap: 15px;
+      margin-top: 30px;
+    }
+
+    .contact-social {
+      width: 50px;
+      height: 50px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      color: var(--white);
+      transition: var(--transition);
+    }
+
+    .contact-social:hover {
+      background: var(--matcha);
+      transform: translateY(-5px);
+    }
+
+    /* Footer */
+    footer {
+      background: #1a1a1a;
+      padding: 40px 0;
+    }
+
+    .footer-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .footer-logo-icon {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, var(--matcha), var(--blue));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: var(--white);
+    }
+
+    .footer-logo-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--white);
+    }
+
+    .footer-text {
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 0.9rem;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 30px;
+    }
+
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 0.9rem;
+      transition: var(--transition);
+    }
+
+    .footer-links a:hover {
+      color: var(--matcha);
+    }
+
+    /* Scroll to top */
+    .scroll-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      background: var(--matcha);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      font-size: 1.2rem;
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transition: var(--transition);
+      box-shadow: 0 5px 20px rgba(154, 207, 138, 0.4);
+      z-index: 100;
+    }
+
+    .scroll-top.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .scroll-top:hover {
+      background: var(--matcha-dark);
+      transform: translateY(-5px);
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .hero-grid,
+      .about-grid,
+      .special-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 50px;
+      }
+
+      .hero-image {
+        order: -1;
+      }
+
+      .strengths-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .menu-grid,
+      .events-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--white);
+        flex-direction: column;
+        padding: 30px;
+        gap: 20px;
+        box-shadow: var(--shadow);
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .menu-toggle {
+        display: flex;
+      }
+
+      .hero-title {
+        font-size: 2.5rem;
+      }
+
+      .hero-image-main img {
+        height: 350px;
+      }
+
+      .hero-float-card {
+        display: none;
+      }
+
+      .strengths-grid,
+      .menu-grid,
+      .events-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .about-img-float,
+      .about-experience {
+        display: none;
+      }
+
+      .about-features {
+        grid-template-columns: 1fr;
+      }
+
+      section {
+        padding: 60px 0;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-title {
+        font-size: 2rem;
+      }
+
+      .hero-btns {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .section-title {
+        font-size: 1.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Preloader -->
+  <div class="preloader">
+    <div class="preloader-inner">
+      <div class="preloader-logo">Balora</div>
+      <div class="preloader-bar"></div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <nav class="nav">
+        <a href="#" class="logo">
+          <div class="logo-icon">B</div>
+          <div class="logo-text">
+            <span>Balora Bombay</span>
+            <span>Versova</span>
+          </div>
+        </a>
+        <div class="nav-links">
+          <a href="#about">About</a>
+          <a href="#special">Specials</a>
+          <a href="#menu">Menu</a>
+          <a href="#events">Updates</a>
+          <a href="#contact">Visit</a>
+          <a href="https://www.instagram.com/balora_bombay/" target="_blank" class="nav-btn">Instagram</a>
+        </div>
+        <div class="menu-toggle">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Slider -->
+  <section class="hero">
+    <div class="hero-slider">
+      <!-- Slide 1 -->
+      <div class="hero-slide active">
+        <div class="hero-slide-bg" style="background-image: url('https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=2000&q=80');"></div>
+        <div class="hero-content container">
+          <div class="hero-grid">
+            <div class="hero-text">
+              <div class="hero-label">
+                <span class="hero-label-dot"></span>
+                Pastel Calm & Better Vibes
+              </div>
+              <h1 class="hero-title">
+                For the love of
+                <span>matcha & calm</span>
+              </h1>
+              <p class="hero-desc">
+                Versova's cutest café corner. A pastel-blue, beige-toned matcha haven for slow sips, cozy catch-ups and aesthetic moments.
+              </p>
+              <div class="hero-btns">
+                <a href="#contact" class="btn btn-primary">
+                  <span>Visit in Versova</span>
+                  <span>→</span>
+                </a>
+                <a href="#menu" class="btn btn-secondary">View Menu</a>
+              </div>
+            </div>
+            <div class="hero-image">
+              <div class="hero-image-main">
+                <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=800&q=80" alt="Balora Café Interior" />
+              </div>
+              <div class="hero-float-card card-1">
+                <div class="float-card-icon">🍵</div>
+                <div class="float-card-text">
+                  <strong>Signature Matcha</strong>
+                  Creamy & frothy
+                </div>
+              </div>
+              <div class="hero-float-card card-2">
+                <div class="float-card-icon">🌿</div>
+                <div class="float-card-text">
+                  <strong>100% Pure Veg</strong>
+                  Jain friendly
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 2 -->
+      <div class="hero-slide">
+        <div class="hero-slide-bg" style="background-image: url('https://images.unsplash.com/photo-1521017432531-fbd92d768814?auto=format&fit=crop&w=2000&q=80');"></div>
+        <div class="hero-content container">
+          <div class="hero-grid">
+            <div class="hero-text">
+              <div class="hero-label">
+                <span class="hero-label-dot"></span>
+                Delightful Experience
+              </div>
+              <h1 class="hero-title">
+                Flavors inspired by
+                <span>pastel dreams</span>
+              </h1>
+              <p class="hero-desc">
+                Every plate is a canvas, every drink a masterpiece. Experience global café cuisine in the calmest corner of Versova.
+              </p>
+              <div class="hero-btns">
+                <a href="#contact" class="btn btn-primary">
+                  <span>Plan Your Visit</span>
+                  <span>→</span>
+                </a>
+                <a href="#menu" class="btn btn-secondary">Explore Menu</a>
+              </div>
+            </div>
+            <div class="hero-image">
+              <div class="hero-image-main">
+                <img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=800&q=80" alt="Cozy Café Seating" />
+              </div>
+              <div class="hero-float-card card-1">
+                <div class="float-card-icon">✨</div>
+                <div class="float-card-text">
+                  <strong>Pastel Aesthetic</strong>
+                  Reel-ready corners
+                </div>
+              </div>
+              <div class="hero-float-card card-2">
+                <div class="float-card-icon">☕</div>
+                <div class="float-card-text">
+                  <strong>Specialty Coffee</strong>
+                  Freshly brewed
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 3 -->
+      <div class="hero-slide">
+        <div class="hero-slide-bg" style="background-image: url('https://images.unsplash.com/photo-1559925393-8be0ec4767c8?auto=format&fit=crop&w=2000&q=80');"></div>
+        <div class="hero-content container">
+          <div class="hero-grid">
+            <div class="hero-text">
+              <div class="hero-label">
+                <span class="hero-label-dot"></span>
+                Amazing & Aesthetic
+              </div>
+              <h1 class="hero-title">
+                Where every sip
+                <span>tells a story</span>
+              </h1>
+              <p class="hero-desc">
+                Brunch dates, work-from-café days, or just a calm escape—Balora Bombay is your new favourite spot in Versova.
+              </p>
+              <div class="hero-btns">
+                <a href="#contact" class="btn btn-primary">
+                  <span>Find Us</span>
+                  <span>→</span>
+                </a>
+                <a href="#about" class="btn btn-secondary">Our Story</a>
+              </div>
+            </div>
+            <div class="hero-image">
+              <div class="hero-image-main">
+                <img src="https://images.unsplash.com/photo-1504275107627-0c2ba7a43dba?auto=format&fit=crop&w=800&q=80" alt="Café Ambiance" />
+              </div>
+              <div class="hero-float-card card-1">
+                <div class="float-card-icon">📍</div>
+                <div class="float-card-text">
+                  <strong>Versova Location</strong>
+                  Andheri West
+                </div>
+              </div>
+              <div class="hero-float-card card-2">
+                <div class="float-card-icon">💚</div>
+                <div class="float-card-text">
+                  <strong>Calm Corner</strong>
+                  Your safe space
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-slider-nav">
+      <div class="slider-dot active" data-slide="0"></div>
+      <div class="slider-dot" data-slide="1"></div>
+      <div class="slider-dot" data-slide="2"></div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-images reveal-left">
+          <div class="about-img-main">
+            <img src="https://images.unsplash.com/photo-1445116572660-236099ec97a0?auto=format&fit=crop&w=800&q=80" alt="Balora Café" />
+          </div>
+          <div class="about-img-float">
+            <img src="https://images.unsplash.com/photo-1541450867933-ff50188dc644?auto=format&fit=crop&w=400&q=80" alt="Desserts" />
+          </div>
+          <div class="about-experience">
+            <div class="about-experience-number">New</div>
+            <div class="about-experience-text">in Versova</div>
+          </div>
+        </div>
+        <div class="about-content reveal-right">
+          <div class="section-label">Our Story</div>
+          <h2 class="section-title">Every Sip Tells a Story</h2>
+          <p class="about-text">
+            Balora Bombay is a pastel-blue, beige-toned matcha café in Versova designed as a calm corner for slow sips, brunch plates and meaningful conversations. We bring together a pure-veg menu with global café bites, crafted for those who appreciate both taste and aesthetics.
+          </p>
+          <p class="about-text">
+            Whether you're here for our signature matcha lattes, Instagrammable interiors, or simply a peaceful escape from the city's hustle—Balora Bombay is your new favourite spot in Versova.
+          </p>
+          <div class="about-features">
+            <div class="about-feature">
+              <div class="about-feature-icon">🍵</div>
+              <div class="about-feature-text">Premium Matcha</div>
+            </div>
+            <div class="about-feature">
+              <div class="about-feature-icon">🌱</div>
+              <div class="about-feature-text">100% Pure Veg</div>
+            </div>
+            <div class="about-feature">
+              <div class="about-feature-icon">✨</div>
+              <div class="about-feature-text">Pastel Aesthetic</div>
+            </div>
+            <div class="about-feature">
+              <div class="about-feature-icon">💜</div>
+              <div class="about-feature-text">Jain Friendly</div>
+            </div>
+          </div>
+          <a href="#contact" class="btn btn-primary">Visit Us Today →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Special Section -->
+  <section id="special" class="special">
+    <div class="container">
+      <div class="special-grid">
+        <div class="special-image reveal-left">
+          <div class="special-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1536256263959-770b48d82b0a?auto=format&fit=crop&w=800&q=80" alt="Signature Matcha Latte" />
+            <div class="special-badge">🍵 Signature</div>
+          </div>
+        </div>
+        <div class="special-content reveal-right">
+          <div class="section-label">Special Drink</div>
+          <h2 class="section-title">Signature Matcha Latte</h2>
+          <p class="special-text">
+            Our ceremonial-grade matcha, whisked to perfection with silky oat milk foam and a hint of vanilla. Served hot or over ice, it's the drink that defines Balora Bombay—creamy, frothy, and unmistakably green.
+          </p>
+          <p class="special-text">
+            Every cup is crafted with intention, using premium Japanese matcha sourced for its vibrant color and smooth, umami-rich taste. The perfect companion for your calm corner moment.
+          </p>
+          <div class="special-price">
+            <span class="special-price-amount">₹320</span>
+            <span class="special-price-text">Hot or Iced</span>
+          </div>
+          <a href="#menu" class="btn btn-primary">View Full Menu →</a>
+
+          <div class="testimonial-card">
+            <p class="testimonial-text">
+              "Found my new favourite matcha spot in Versova. The pastel interiors and calm music make it perfect for a solo work day. The matcha is genuinely one of the best I've had!"
+            </p>
+            <div class="testimonial-author">
+              <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&q=80" alt="Customer" class="testimonial-avatar" />
+              <div>
+                <div class="testimonial-name">Priya Sharma</div>
+                <div class="testimonial-role">Café Regular</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Strengths Section -->
+  <section class="strengths">
+    <div class="container">
+      <div class="strengths-header reveal">
+        <div class="section-label">Why Choose Us</div>
+        <h2 class="section-title">Our Strength</h2>
+        <p class="section-desc">
+          What makes Balora Bombay the cutest calm corner in Versova? Here's why café hoppers love us.
+        </p>
+      </div>
+      <div class="strengths-grid">
+        <div class="strength-card reveal" style="transition-delay: 0.1s;">
+          <div class="strength-icon">🍵</div>
+          <h3 class="strength-title">Premium Matcha</h3>
+          <p class="strength-text">Ceremonial-grade Japanese matcha, whisked fresh for every cup. Creamy, frothy, and vibrantly green.</p>
+        </div>
+        <div class="strength-card reveal" style="transition-delay: 0.2s;">
+          <div class="strength-icon">🎨</div>
+          <h3 class="strength-title">Pastel Aesthetic</h3>
+          <p class="strength-text">Soft blues, warm beige tones, and cozy corners designed for your mood and your grid.</p>
+        </div>
+        <div class="strength-card reveal" style="transition-delay: 0.3s;">
+          <div class="strength-icon">🌿</div>
+          <h3 class="strength-title">Pure Veg Menu</h3>
+          <p class="strength-text">100% vegetarian and Jain-friendly options. Global café bites crafted with care and quality.</p>
+        </div>
+        <div class="strength-card reveal" style="transition-delay: 0.4s;">
+          <div class="strength-icon">📍</div>
+          <h3 class="strength-title">Versova Vibes</h3>
+          <p class="strength-text">Located in the heart of Versova—perfect for café hopping, work days, and weekend brunches.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Menu Preview Section -->
+  <section id="menu" class="menu-preview">
+    <div class="container">
+      <div class="menu-header reveal">
+        <div class="section-label">Our Menu</div>
+        <h2 class="section-title">Curated Café Favorites</h2>
+        <p class="section-desc">
+          From signature matcha drinks to comforting brunch plates—every item is crafted for taste and aesthetics.
+        </p>
+      </div>
+      <div class="menu-grid">
+        <div class="menu-card reveal" style="transition-delay: 0.1s;">
+          <div class="menu-card-image">
+            <img src="https://images.unsplash.com/photo-1536256263959-770b48d82b0a?auto=format&fit=crop&w=600&q=80" alt="Matcha Latte" />
+            <div class="menu-card-tag">Bestseller</div>
+          </div>
+          <div class="menu-card-content">
+            <h3 class="menu-card-title">Signature Matcha Latte</h3>
+            <p class="menu-card-desc">Ceremonial-grade matcha with silky oat milk foam and vanilla.</p>
+            <div class="menu-card-footer">
+              <div class="menu-card-price">₹320</div>
+              <div class="menu-card-btn">+</div>
+            </div>
+          </div>
+        </div>
+        <div class="menu-card reveal" style="transition-delay: 0.2s;">
+          <div class="menu-card-image">
+            <img src="https://images.unsplash.com/photo-1541450867933-ff50188dc644?auto=format&fit=crop&w=600&q=80" alt="Dessert" />
+            <div class="menu-card-tag">Sweet</div>
+          </div>
+          <div class="menu-card-content">
+            <h3 class="menu-card-title">Lotus Biscoff Cheesecake</h3>
+            <p class="menu-card-desc">Creamy cheesecake with caramelized Biscoff crumble topping.</p>
+            <div class="menu-card-footer">
+              <div class="menu-card-price">₹380</div>
+              <div class="menu-card-btn">+</div>
+            </div>
+          </div>
+        </div>
+        <div class="menu-card reveal" style="transition-delay: 0.3s;">
+          <div class="menu-card-image">
+            <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=600&q=80" alt="Pizza" />
+            <div class="menu-card-tag">Savory</div>
+          </div>
+          <div class="menu-card-content">
+            <h3 class="menu-card-title">Truffle Mushroom Pizza</h3>
+            <p class="menu-card-desc">Thin crust pizza with truffle oil, wild mushrooms, and mozzarella.</p>
+            <div class="menu-card-footer">
+              <div class="menu-card-price">₹450</div>
+              <div class="menu-card-btn">+</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Events Section -->
+  <section id="events" class="events">
+    <div class="container">
+      <div class="events-header reveal">
+        <div class="section-label">Recent Updates</div>
+        <h2 class="section-title">What's New at Balora</h2>
+        <p class="section-desc">
+          Stay updated with our latest drinks, seasonal specials, and café happenings.
+        </p>
+      </div>
+      <div class="events-grid">
+        <div class="event-card reveal" style="transition-delay: 0.1s;">
+          <div class="event-card-image">
+            <img src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?auto=format&fit=crop&w=600&q=80" alt="New Drinks" />
+            <div class="event-card-date">
+              <div class="event-card-date-day">New</div>
+              <div class="event-card-date-month">Drop</div>
+            </div>
+          </div>
+          <div class="event-card-content">
+            <div class="event-card-tag">Drinks</div>
+            <h3 class="event-card-title">Winter Matcha Specials</h3>
+            <p class="event-card-text">New seasonal matcha creations to warm your soul this winter.</p>
+          </div>
+        </div>
+        <div class="event-card reveal" style="transition-delay: 0.2s;">
+          <div class="event-card-image">
+            <img src="https://images.unsplash.com/photo-1495147466023-ac5c588e2e94?auto=format&fit=crop&w=600&q=80" alt="Weekend Brunch" />
+            <div class="event-card-date">
+              <div class="event-card-date-day">Sat</div>
+              <div class="event-card-date-month">Sun</div>
+            </div>
+          </div>
+          <div class="event-card-content">
+            <div class="event-card-tag">Brunch</div>
+            <h3 class="event-card-title">Weekend Brunch Vibes</h3>
+            <p class="event-card-text">Extended brunch menu with live music every weekend.</p>
+          </div>
+        </div>
+        <div class="event-card reveal" style="transition-delay: 0.3s;">
+          <div class="event-card-image">
+            <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=600&q=80" alt="Matcha Workshop" />
+            <div class="event-card-date">
+              <div class="event-card-date-day">Soon</div>
+              <div class="event-card-date-month">2025</div>
+            </div>
+          </div>
+          <div class="event-card-content">
+            <div class="event-card-tag">Workshop</div>
+            <h3 class="event-card-title">Matcha Making Class</h3>
+            <p class="event-card-text">Learn to whisk the perfect matcha with our baristas.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="contact">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-content reveal-left">
+          <div class="section-label">Visit Us</div>
+          <h2 class="section-title">Find Your Calm Corner</h2>
+          <p class="contact-text">
+            We're in the heart of Versova, just a short walk from the beach. Come for the matcha, stay for the vibes.
+          </p>
+
+          <div class="contact-info-item">
+            <div class="contact-info-icon">📍</div>
+            <div>
+              <div class="contact-info-label">Location</div>
+              <div class="contact-info-text">Balora Bombay, Versova<br>Andheri West, Mumbai</div>
+            </div>
+          </div>
+
+          <div class="contact-info-item">
+            <div class="contact-info-icon">📱</div>
+            <div>
+              <div class="contact-info-label">Reservations</div>
+              <div class="contact-info-text">+91-XXXX-XXXXXX</div>
+            </div>
+          </div>
+
+          <div class="contact-info-item">
+            <div class="contact-info-icon">📷</div>
+            <div>
+              <div class="contact-info-label">Instagram</div>
+              <div class="contact-info-text">@balora_bombay</div>
+            </div>
+          </div>
+
+          <div class="contact-socials">
+            <a href="https://www.instagram.com/balora_bombay/" target="_blank" class="contact-social">📷</a>
+            <a href="#" class="contact-social">📘</a>
+            <a href="#" class="contact-social">🐦</a>
+          </div>
+        </div>
+
+        <div class="contact-hours reveal-right">
+          <h3 class="contact-hours-title">Opening Hours</h3>
+          <div class="contact-hours-item">
+            <span class="contact-hours-day">Monday - Friday</span>
+            <span class="contact-hours-time">9:00 AM - 11:00 PM</span>
+          </div>
+          <div class="contact-hours-item">
+            <span class="contact-hours-day">Saturday</span>
+            <span class="contact-hours-time">8:00 AM - 11:30 PM</span>
+          </div>
+          <div class="contact-hours-item">
+            <span class="contact-hours-day">Sunday</span>
+            <span class="contact-hours-time">8:00 AM - 11:00 PM</span>
+          </div>
+          <div class="contact-hours-item">
+            <span class="contact-hours-day">Brunch (Weekends)</span>
+            <span class="contact-hours-time">10:00 AM - 3:00 PM</span>
+          </div>
+          <a href="https://www.google.com/maps" target="_blank" class="btn btn-primary" style="width: 100%; margin-top: 25px; justify-content: center;">
+            Open in Google Maps →
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-logo">
+          <div class="footer-logo-icon">B</div>
+          <div class="footer-logo-text">Balora Bombay</div>
+        </div>
+        <div class="footer-text">
+          © 2025 Balora Bombay. Crafted with pastel calm 💚
+        </div>
+        <div class="footer-links">
+          <a href="#about">About</a>
+          <a href="#menu">Menu</a>
+          <a href="#contact">Visit</a>
+          <a href="https://www.instagram.com/balora_bombay/" target="_blank">Instagram</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scroll to Top -->
+  <div class="scroll-top">↑</div>
+
+  <script>
+    // Preloader
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.querySelector('.preloader').classList.add('hidden');
+      }, 1500);
+    });
+
+    // Header scroll effect
+    const header = document.querySelector('header');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 100) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+
+    // Mobile menu toggle
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+      menuToggle.classList.toggle('active');
+    });
+
+    // Hero Slider
+    const slides = document.querySelectorAll('.hero-slide');
+    const dots = document.querySelectorAll('.slider-dot');
+    let currentSlide = 0;
+    let slideInterval;
+
+    function showSlide(index) {
+      slides.forEach((slide, i) => {
+        slide.classList.remove('active');
+        dots[i].classList.remove('active');
+      });
+      slides[index].classList.add('active');
+      dots[index].classList.add('active');
+      currentSlide = index;
+    }
+
+    function nextSlide() {
+      let next = (currentSlide + 1) % slides.length;
+      showSlide(next);
+    }
+
+    function startSlider() {
+      slideInterval = setInterval(nextSlide, 6000);
+    }
+
+    dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => {
+        clearInterval(slideInterval);
+        showSlide(index);
+        startSlider();
+      });
+    });
+
+    startSlider();
+
+    // Scroll reveal animation
+    const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+
+    function checkReveal() {
+      const windowHeight = window.innerHeight;
+      revealElements.forEach(el => {
+        const elementTop = el.getBoundingClientRect().top;
+        const revealPoint = 150;
+        if (elementTop < windowHeight - revealPoint) {
+          el.classList.add('revealed');
+        }
+      });
+    }
+
+    window.addEventListener('scroll', checkReveal);
+    window.addEventListener('load', checkReveal);
+
+    // Scroll to top button
+    const scrollTopBtn = document.querySelector('.scroll-top');
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 500) {
+        scrollTopBtn.classList.add('visible');
+      } else {
+        scrollTopBtn.classList.remove('visible');
+      }
+    });
+
+    scrollTopBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          navLinks.classList.remove('active');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
